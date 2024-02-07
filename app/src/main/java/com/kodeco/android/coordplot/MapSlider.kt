@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
 fun MapSlider(titleRes: Int, percentage: Float, onPercentageChange: (Float) -> Unit) {
 
     Row(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(8.dp)
     ){
         Text(text = stringResource(titleRes) + ": " + (percentage * 100).roundToInt() + "%",
             Modifier.padding(8.dp)
