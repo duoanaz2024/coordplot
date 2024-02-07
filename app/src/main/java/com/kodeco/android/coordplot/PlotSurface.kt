@@ -39,7 +39,7 @@ fun PlotSurface() {
             Spacer(modifier = Modifier.height(10.dp))
             Map(xPercentage, yPercentage)
             MapSlider(titleRes = R.string.x_axis, percentage = xPercentage) { xPercentage = it }
-            MapSlider(titleRes = R.string.x_axis, percentage = yPercentage) { yPercentage = it }
+            MapSlider(titleRes = R.string.y_axis, percentage = yPercentage) { yPercentage = it }
 
         }
     }
