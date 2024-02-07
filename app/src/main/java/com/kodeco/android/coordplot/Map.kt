@@ -14,18 +14,18 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 @Composable
-fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
+fun Map(xPercent: Float, yPercent: Float, boxSize: Int, modifier: Modifier = Modifier) {
 
     Box(
         modifier
-            .size(300.dp)
+            .size(boxSize.dp)
             .background(Color.Cyan)
     ){
         Image(
             painter = painterResource(id = R.drawable.car_image),
             contentDescription = "Car",
             modifier
-                .offset((xPercent * 300 - 18).dp, (yPercent * 300 - 18).dp)
+                .offset((xPercent *  boxSize - 18).dp, (yPercent * boxSize - 18).dp)
                 .size(36.dp)
         )
     }
@@ -36,6 +36,6 @@ fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
 @Composable
 fun MapPreview() {
     MyApplicationTheme {
-        Map(xPercent = 0.5f, yPercent = 0.5f)
+        Map(xPercent = 0.5f, yPercent = 0.5f, 300)
     }
 }

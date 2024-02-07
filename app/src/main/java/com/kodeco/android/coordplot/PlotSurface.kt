@@ -1,12 +1,14 @@
 package com.kodeco.android.coordplot
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,19 +31,27 @@ fun PlotSurface() {
 
         var xPercentage: Float by remember { mutableFloatStateOf(0.5f) }
         var yPercentage: Float by remember { mutableFloatStateOf(0.5f) }
+        var boxSize: Int
+        BoxWithConstraints {
+            boxSize = if (maxHeight < 400.dp) {
+                200
+            } else{
+                300
+            }
+            Column(
+                modifier = Modifier.fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Spacer(modifier = Modifier.height(5.dp))
+                Map(xPercentage, yPercentage, boxSize)
+                MapSlider(titleRes = R.string.x_axis, percentage = xPercentage) { xPercentage = it }
+                MapSlider(titleRes = R.string.y_axis, percentage = yPercentage) { yPercentage = it }
 
-        Column(
-            modifier = Modifier.fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-
-            Spacer(modifier = Modifier.height(10.dp))
-            Map(xPercentage, yPercentage)
-            MapSlider(titleRes = R.string.x_axis, percentage = xPercentage) { xPercentage = it }
-            MapSlider(titleRes = R.string.y_axis, percentage = yPercentage) { yPercentage = it }
-
+            }
         }
+
+
     }
 }
 
